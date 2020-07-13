@@ -25,6 +25,17 @@ var todos = [
   }
 ]
 
+app.post('/user/authenticate', function (request, response) {
+  if(request.body.email === "test@mail.de" && parseInt(request.body.password) === 112233) {
+    response.status(201).send({
+      name: "Albert Einstein",
+      age: 31
+    });
+  } else {
+    response.status(403).send({message: "Access Denied"});
+  }
+});
+
 app.get('/todo', function (request, response) {
   response.status(200).send(todos);
 });
